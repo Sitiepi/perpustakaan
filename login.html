@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+  
+</head>
+
+<body>
+  <a href="index.html">Kembali Ke Beranda</a>
+  <form>
+    <label for="username">username</label>
+    <input type="text" id="username" />
+    
+    <label for="password">password</label>
+    <input type="password" id="password" />
+    
+      <button class="button" type="submit">Login</button>
+  </form>
+  
+  <div id="status"></div>
+  
+  <script type="module">
+    import { login } from './main.js'
+    
+    const form = document.querySelector('form')
+    const statusDiv = document.getElementById('status')
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      
+      const username = document.getElementById('username').value
+      const password = document.getElementById('password').value
+      
+      await login(username, password)
+    })
+  </script>
+
+</body>
+
+</html>

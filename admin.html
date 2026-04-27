@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Perpustakaan</title>
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+   <h1>Admin Perpustakaan</h1>
+   
+   <button href="#" class="button" id="logout">Keluar</button>
+   <script type="module">
+      import { logout } from './main.js'
+
+      const logoutLink = document.getElementById('logout')
+      logoutLink.addEventListener('click', (e) => {
+        e.preventDefault()
+        logout()
+      })
+    </script>
+</body>
+
+</html>
