@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tambah</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Form tambah Buku</h1>
+    <form id="formTambah">
+      
+      
+      <label> Judul Buku</label>
+      <input type="text" id="judulbuku" />
+      
+      <label> Penulis</label>
+      <input type="text" id="penulis" />
+      
+      <label>Penerbit</label>
+      <input type="text" id="penerbit" />
+      
+      <button id="tombol" type="submit" class="button">simpan</button>
+      <a href="admin.html">Daftar Buku</a>
+    </form>
+  </div>
+  
+  <script type="module">
+    import { tambahDataBuku } from './main.js'
+    
+    //mengirimkan data tanaman ke form
+    const formTambah = document.getElementById('formTambah')
+    
+    //event ketika form disumbit
+    formTambah.addEventListener('submit', function(e) {
+      //pencegah reload halaman
+      e.preventDefault()
+      
+      tambahDataBuku()
+    })
+  </script>
+</body>
+
+</html>

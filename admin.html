@@ -13,14 +13,35 @@
    <h1>Admin Perpustakaan</h1>
    
    <button href="#" class="button" id="logout">Keluar</button>
+  
+        <div class="container">
+    
+    <a href="tambah.html" class="button"> Tambah Buku</a>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Judul Buku</th>
+          <th>Penulis</th>
+          <th>Penerbit</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="tabelData"></tbody>
+    </table>
+  </div>
+  
+  
    <script type="module">
-      import { logout } from './main.js'
+      import { logout,tampilkanDaftarBuku } from './main.js'
 
       const logoutLink = document.getElementById('logout')
       logoutLink.addEventListener('click', (e) => {
         e.preventDefault()
         logout()
       })
+      
+      tampilkanDaftarBuku()
     </script>
 </body>
 
