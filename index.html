@@ -20,21 +20,33 @@
   </nav>
 
   <div class="container">
-    <h2>Selamat Datang</h2>
+    <h3>Selamat Datang</h3>
     <p>
       Sistem sederhana untuk mengelola data buku dan peminjaman.
     </p>
-
+<div id="container-buku">
+  
     <div class="card">
       <p>📖 Kelola Data Buku</p>
       <p>📥 Catat Peminjaman</p>
       <p>📤 Proses Pengembalian</p>
+    </div>
+    <div class="card">
+      <p>📖 Kelola Data Buku</p>
+      <p>📥 Catat Peminjaman</p>
+      <p>📤 Proses Pengembalian</p>
+    </div>
     </div>
   </div>
 
   <footer>
     © 2026 Perpustakaan
   </footer>
+    <script type="module">
+      import { daftarBukuPublik } from './main.js'
 
+      
+      daftarBukuPublik()
+    </script>
 </body>
 </html>

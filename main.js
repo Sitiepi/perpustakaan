@@ -154,5 +154,35 @@ export async function tambahDataBuku() {
 }
 
 export async function daftarBukuPublik() {
+  const snapshot = await getDocs(bukuCollection)
   
+  const container = document.getElementById('container-buku')
+  
+  // ambil element tabel data
+  
+  
+  //kosongkan isi tablel 
+  container.innerHTML = ""
+  
+  
+  snapshot.forEach((doc)=>{
+        // variabel untuk menyimpan data 
+    const data = doc.data()
+    const id = doc.id
+    
+      //element kartu buku
+      const kartu = document.createElement("div")
+      kartu.className = "card"
+      
+      const judulbuku = document.createElement("h3")
+      judulbuku.textContent = data.judulbuku
+      
+      const penulis = document.createElement("p")
+      penulis.textContent = "penulis" + data.penulis
+      
+      kartu.appendChild(judulbuku)
+      kartu.appendChild(penulis)
+      
+      container.appendChild(kartu)
+  })
 }
