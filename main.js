@@ -10,7 +10,8 @@ import {
   doc,
   getDoc,
   query,
-  where
+  where,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
 // GANTI DENGAN FIREBASE CONFIG ANDA
@@ -26,6 +27,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 const bukuCollection = collection(db, "buku")
+const peminjamanCollection = collection(db, "peminjaman")
   
   export async function login() {
     const username = document.getElementById("username").value;
@@ -185,10 +187,16 @@ export async function daftarBukuPublik() {
       const tombolPinjam = document.createElement("button")
       tombolPinjam.textContent ="Pinjam"
       tombolPinjam.className ="button"
+      tombolPinjam.onclick = async () => {
+      tombolPinjam.disabled = true
+  await pinjamBuku(id, data)
+}
+      
       
       kartu.appendChild(judulbuku)
       kartu.appendChild(penulis)
       kartu.appendChild(tombolPinjam)
+      
       
       container.appendChild(kartu)
   })
@@ -224,4 +232,18 @@ export async function ubahDataBuku(id, judulbuku, penulis, penerbit) {
   //alihlkan ke halaman daftar buku
   window.location.href = 'admin.html'
   // Tab to edit
+}
+
+// fungsi pinjam buku
+const peminjamanCollection = collection(db, "peminjaman")
+export async function pinjamBuku(id, dataBuku) {
+  await addDoc(peminjamanCollection, {
+    idBuku: id,
+    judulbuku: dataBuku.judulbuku,
+    penulis: dataBuku.penulis,
+    penerbit: dataBuku.penerbit,
+    tanggalPinjam: serverTimestamp()
+  })
+
+  alert("Buku berhasil dipinjam")
 }
