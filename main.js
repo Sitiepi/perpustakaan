@@ -235,7 +235,6 @@ export async function ubahDataBuku(id, judulbuku, penulis, penerbit) {
 }
 
 // fungsi pinjam buku
-const peminjamanCollection = collection(db, "peminjaman")
 export async function pinjamBuku(id, dataBuku) {
   await addDoc(peminjamanCollection, {
     idBuku: id,
@@ -246,4 +245,54 @@ export async function pinjamBuku(id, dataBuku) {
   })
 
   alert("Buku berhasil dipinjam")
+}
+
+// fungsi menampilkan daftar peminjaman
+export async function tampilkanDaftarPeminjaman() {
+  const snapshot = await getDocs(peminjamanCollection)
+
+  const tabel = document.getElementById("tabelPeminjaman")
+
+  tabel.innerHTML = ""
+
+  snapshot.forEach((doc, index) => {
+    const data = doc.data()
+
+    const baris = document.createElement("tr")
+
+    // nomor
+    const no = document.createElement("td")
+    no.textContent = index + 1
+
+    // judul buku
+    const judul = document.createElement("td")
+    judul.textContent = data.judulbuku
+
+    // penulis
+    const penulis = document.createElement("td")
+    penulis.textContent = data.penulis
+
+    // penerbit
+    const penerbit = document.createElement("td")
+    penerbit.textContent = data.penerbit
+
+    // tanggal pinjam
+    const tanggal = document.createElement("td")
+
+    if (data.tanggalPinjam) {
+      tanggal.textContent =
+        data.tanggalPinjam.toDate().toLocaleString()
+    } else {
+      tanggal.textContent = "-"
+    }
+
+    // gabungkan ke baris
+    baris.appendChild(no)
+    baris.appendChild(judul)
+    baris.appendChild(penulis)
+    baris.appendChild(penerbit)
+    baris.appendChild(tanggal)
+
+    tabel.appendChild(baris)
+  })
 }

@@ -31,9 +31,25 @@
     </table>
   </div>
   
+    <h2>Daftar Peminjaman Buku</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Judul Buku</th>
+      <th>Penulis</th>
+      <th>Penerbit</th>
+      <th>Tanggal Pinjam</th>
+    </tr>
+  </thead>
+
+  <tbody id="tabelPeminjaman"></tbody>
+</table>
+  
   
    <script type="module">
-      import { logout,tampilkanDaftarBuku } from './main.js'
+      import { logout,tampilkanDaftarBuku,tampilkanDaftarPeminjaman} from './main.js'
 
       const logoutLink = document.getElementById('logout')
       logoutLink.addEventListener('click', (e) => {
@@ -42,6 +58,7 @@
       })
       
       tampilkanDaftarBuku()
+      tampilkanDaftarPeminjaman()
     </script>
 </body>
 
