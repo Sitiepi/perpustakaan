@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ubah Data Buku</title>
+  
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Form Ubah Buku</h1>
+    <form id="formUbah">
+
+      
+      <label> Judul Buku</label>
+      <input type="text" id="judulbuku" />
+      
+      <label>Penulis</label>
+      <input type="text" id="penulis"/>
+        
+        <label>Penerbit</label>
+        <input type="text" id="penerbit"/>
+        
+      <button id="tombol" type="submit">simpan</button>
+      <a href="admin.html">Daftar Tanaman</a>
+    </form>
+  </div>
+  
+  <script type="module">
+    import { ambilDataBuku, ubahDataBuku } from './main.js'
+    
+    //mengambil id dari url
+    const urlParams = new URLSearchParams(window.location.search)
+    const idBuku = urlParams.get('id')
+    console.log(idBuku)
+    //mengisi form dengan data barang yang diambil dari firebase 
+    
+    const buku = await ambilDataBuku(idBuku)
+    console.log(buku)
+    
+    document.getElementById('judulbuku').value = buku.judulbuku
+    document.getElementById('penulis').value = buku.penulis
+    document.getElementById('penerbit').value = buku.penerbit
+    
+    const formUbah = document.getElementById('formUbah')
+    
+    formUbah.addEventListener('submit', function(e) {
+      e.preventDefault()
+      
+      const judulbuku = document.getElementById('judulbuku').value
+      const penulis = document.getElementById('penulis').value
+      const penerbit = document.getElementById('penerbit').value 
+      
+      ubahDataBuku(idBuku,judulbuku,penulis,penerbit)
+      
+    })
+  </script>
+  
+ 
+</body>
+
+</html>

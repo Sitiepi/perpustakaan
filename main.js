@@ -180,9 +180,48 @@ export async function daftarBukuPublik() {
       const penulis = document.createElement("p")
       penulis.textContent = "penulis" + data.penulis
       
+      
+      // buat element tombol pinjam
+      const tombolPinjam = document.createElement("button")
+      tombolPinjam.textContent ="Pinjam"
+      tombolPinjam.className ="button"
+      
       kartu.appendChild(judulbuku)
       kartu.appendChild(penulis)
+      kartu.appendChild(tombolPinjam)
       
       container.appendChild(kartu)
   })
+}
+
+//fungsi untuk menghapus data barang
+export async function hapusBuku(id) {
+  if (!confirm("yakin ingin menghapus data ini?")) return
+  //menghapus dokumen barang berdasarkan id
+  await deleteDoc(doc(db, "buku", id))
+  
+  // refresh data Buku
+  await tampilkanDaftarBuku()
+}
+
+//fungsi untuk menampilkan data buku berdasarkan id
+export async function ambilDataBuku(id) {
+  const docRef = doc(db, "buku", id)
+  const docSnap = await getDoc(docRef)
+  
+  return await docSnap.data()
+}
+
+//fiungsi untuk mengubah data buku
+export async function ubahDataBuku(id, judulbuku, penulis, penerbit) {
+  await updateDoc(doc(db, "buku", id), {
+    judulbuku : judulbuku,
+    penulis : penulis,
+    penerbit : penerbit
+    
+  })
+  
+  //alihlkan ke halaman daftar buku
+  window.location.href = 'admin.html'
+  // Tab to edit
 }
